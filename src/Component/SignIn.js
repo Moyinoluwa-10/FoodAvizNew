@@ -6,10 +6,10 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Swal from "sweetalert2";
+import Swal from "sweetalert2";*/
 
-const SignUp = () => {
-  const navigate = useNavigate();
+const SignIn = () => {
+  /*const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
 
   const modelSchema = yup.object().shape({
@@ -91,12 +91,12 @@ const SignUp = () => {
         </Form>
       </Overlay>
     </Container>
-  );
-};
+  );*/
+}; 
 
-export default SignUp;
+export default SignIn;
 
-const Container = styled.div`
+/*const Container = styled.div`
   background-image: url("/image/backg.jpeg");
   background-position: center;
   background-repeat: no-repeat;
