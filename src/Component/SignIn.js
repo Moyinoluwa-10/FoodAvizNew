@@ -1,5 +1,6 @@
+/*
 import React, { useState } from "react";
-/*import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -8,8 +9,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Swal from "sweetalert2";*/
 
-const SignIn = () => {
-  /*const navigate = useNavigate();
+/*const SignIn = () => {
+  const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
 
   const modelSchema = yup.object().shape({
@@ -91,12 +92,12 @@ const SignIn = () => {
         </Form>
       </Overlay>
     </Container>
-  );*/
+  );
 }; 
 
 export default SignIn;
 
-/*const Container = styled.div`
+const Container = styled.div`
   background-image: url("/image/backg.jpeg");
   background-position: center;
   background-repeat: no-repeat;
@@ -228,3 +229,192 @@ const Alt = styled.div`
     font-family: 13px;
   }
 `;*/
+
+import React, { useState } from "react";
+// import { NavLink, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import axios from "axios";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Swal from "sweetalert2";
+
+const SignIn = () => {
+  const [toggle, setToggle] = useState(false);
+
+  const modelSchema = yup.object().shape({
+    email: yup.string().required("email has to be filled"),
+    password: yup.string().required("Please enter your preferred password"),
+  });
+
+  const { handleSubmit, register } = useForm({
+    resolver: yupResolver(modelSchema),
+  });
+
+  const onSubmit = handleSubmit(async (val) => {
+    console.log(val);
+    const { email, password } = val;
+
+    const formData = new FormData();
+
+    formData.append("email", email);
+    formData.append("password", password);
+
+    await axios
+      .post("https://foodaviz.herokuapp.com/api/sign", val)
+      .then((res) => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Welcome back on board",
+          showConfirmButton: false,
+          timer: 2500,
+        });
+      });
+  });
+
+  const onToggle = () => {
+    setToggle(!toggle);
+  };
+
+
+
+
+return (
+  <>
+    <Container>
+      <Form onSubmit={onSubmit}>
+          <Logo src="/image/FoodAviz.png" />
+
+          <Inputs>
+             <Input placeholder="Email" type="email" {...register("email")} />
+
+             <PassInput>
+               <PassPut placeholder="Password" type="password" {...register("password")} />
+
+               <PassIcon>
+                {toggle ? (
+                  <AiOutlineEyeInvisible onClick={onToggle} />
+                ) : (
+                  <AiOutlineEye onClick={onToggle} />
+                )}
+              </PassIcon>
+
+             </PassInput> 
+
+             <Button type="submit">Log In</Button>
+           
+          </Inputs>  
+      </Form>
+
+      <Background>
+           <BackImg src="/image/signin_img.png" />
+      </Background>
+
+    </Container>
+
+  </>
+);
+
+}; 
+
+export default SignIn;
+
+
+
+
+// STYLING  ****************
+
+const Container = styled.div`
+  display: flex;
+  background: f5f5f5;
+  max-width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+`;
+
+const Form = styled.form`
+  margin-top: 70px;
+  margin-left: 50px
+`;
+
+const Logo = styled.img`
+  width: 30%;
+  margin-left: 220px;
+  
+`;
+
+const Inputs = styled.div`
+  margin: 70px 150px 0;
+`;
+
+const Input = styled.input`
+  width: 300px;
+  height: 45px;
+  background: #fff;
+  justify-content: center;
+  box-shadow: 0 10px  18px 5px rgba(0, 0, 0, 0.2);
+  border: none;
+  outline: none;
+  border-radius: 5px;
+
+  ::placeholder{
+    padding-left: 15px;
+  }
+`;
+
+const PassInput = styled.div`
+  padding-top: 30px;
+  display: flex;
+`;
+
+const PassPut = styled.input`
+  width: 300px;
+  height: 45px;
+  background: #fff;
+  justify-content: center;
+  box-shadow: 0 10px  18px 5px rgba(0, 0, 0, 0.2);
+  border: none;
+  outline: none;
+  border-radius: 5px;
+
+  ::placeholder{
+    padding-left: 15px;
+  }
+
+`;
+
+const PassIcon = styled.div`
+  position: absolute;
+  font-size: 23px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: 350ms;
+  margin: 15px 0 0 265px;
+  :hover {
+    opacity: 1;
+  }
+`;
+
+const Button = styled.button`
+  background: #56cc56;
+  color: black;
+  font-weight: bold;
+  font-family: poppins;
+  width: 300px;
+  cursor: pointer;
+  height: 45px;
+  margin-top: 130px;
+  border-radius: 5px;
+  border: none;
+`;
+
+const Background = styled.div`
+  width: 100%;
+`;
+
+const BackImg = styled.img`
+  width: 100%;
+  height: 100%;
+`;
