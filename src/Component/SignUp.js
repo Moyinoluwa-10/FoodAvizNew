@@ -318,7 +318,7 @@ const SignUp = () => {
           showConfirmButton: false,
           timer: 2500,
         });
-        // navigate("/signin");
+        
       });
   });
 
