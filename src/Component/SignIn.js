@@ -303,7 +303,7 @@ return (
 
              </PassInput> 
 
-             <Button type="submit">Log In</Button>
+             <Button type="submit">Sign In</Button>
            
           </Inputs>  
       </Form>
@@ -336,7 +336,7 @@ const Container = styled.div`
 
 const Form = styled.form`
   margin-top: 70px;
-  margin-left: 50px
+  margin-left: 50px;
 `;
 
 const Logo = styled.img`
