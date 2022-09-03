@@ -303,7 +303,7 @@ return (
 
              </PassInput> 
 
-             <Button type="submit">Log In</Button>
+             <Button type="submit">Sign In</Button>
            
           </Inputs>  
       </Form>
