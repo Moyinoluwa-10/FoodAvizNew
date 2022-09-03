@@ -336,7 +336,7 @@ const Container = styled.div`
 
 const Form = styled.form`
   margin-top: 70px;
-  margin-left: 50px
+  margin-left: 50px;
 `;
 
 const Logo = styled.img`
