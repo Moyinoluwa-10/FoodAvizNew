@@ -278,51 +278,44 @@ const SignIn = () => {
     setToggle(!toggle);
   };
 
-
-
-
-return (
-  <>
-    <Container>
-      <Form onSubmit={onSubmit}>
+  return (
+    <>
+      <Container>
+        <Form onSubmit={onSubmit}>
           <Logo src="/image/FoodAviz.png" />
 
           <Inputs>
-             <Input placeholder="Email" type="email" {...register("email")} />
+            <Input placeholder="Email" type="email" {...register("email")} />
 
-             <PassInput>
-               <PassPut placeholder="Password" type="password" {...register("password")} />
+            <PassInput>
+              <PassPut
+                placeholder="Password"
+                type="password"
+                {...register("password")}
+              />
 
-               <PassIcon>
+              <PassIcon>
                 {toggle ? (
                   <AiOutlineEyeInvisible onClick={onToggle} />
                 ) : (
                   <AiOutlineEye onClick={onToggle} />
                 )}
               </PassIcon>
+            </PassInput>
 
-             </PassInput> 
+            <Button type="submit">Sign In</Button>
+          </Inputs>
+        </Form>
 
-             <Button type="submit">Sign In</Button>
-           
-          </Inputs>  
-      </Form>
-
-      <Background>
-           <BackImg src="/image/signin_img.png" />
-      </Background>
-
-    </Container>
-
-  </>
-);
-
-}; 
+        <Background>
+          <BackImg src="/image/signin_img.png" />
+        </Background>
+      </Container>
+    </>
+  );
+};
 
 export default SignIn;
-
-
-
 
 // STYLING  ****************
 
@@ -342,7 +335,6 @@ const Form = styled.form`
 const Logo = styled.img`
   width: 30%;
   margin-left: 220px;
-  
 `;
 
 const Inputs = styled.div`
@@ -354,12 +346,12 @@ const Input = styled.input`
   height: 45px;
   background: #fff;
   justify-content: center;
-  box-shadow: 0 10px  18px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 18px 5px rgba(0, 0, 0, 0.2);
   border: none;
   outline: none;
   border-radius: 5px;
 
-  ::placeholder{
+  ::placeholder {
     padding-left: 15px;
   }
 `;
@@ -374,15 +366,14 @@ const PassPut = styled.input`
   height: 45px;
   background: #fff;
   justify-content: center;
-  box-shadow: 0 10px  18px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 18px 5px rgba(0, 0, 0, 0.2);
   border: none;
   outline: none;
   border-radius: 5px;
 
-  ::placeholder{
+  ::placeholder {
     padding-left: 15px;
   }
-
 `;
 
 const PassIcon = styled.div`
